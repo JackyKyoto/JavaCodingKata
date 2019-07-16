@@ -1,4 +1,4 @@
-package com.jacky.refactoringkata.chap1.step1;
+package com.jacky.refactoringkata.chap1.step3;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerTest {
-
     Movie movie1 = null;
     Rental rental1 = null;
     Customer customer1 = null;
+
     @BeforeEach
     void setUp() {
         movie1 = new Movie("Children movie", 2);
@@ -28,7 +28,5 @@ class CustomerTest {
         assertEquals(expectStr, customer1.statement());
     }
 
-    @Test
-    void statement1() {
-    }
+
 }
