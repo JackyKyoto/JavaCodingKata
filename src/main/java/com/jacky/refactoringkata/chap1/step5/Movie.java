@@ -20,6 +20,7 @@ public class Movie {
     }
 
     public void setPriceCode(int arg) {
+        // TODO: 2019-07-23   这里 可以考虑工厂模式
         switch (arg) {
             case REGULAR:
                 _price = new RegularPrice();
