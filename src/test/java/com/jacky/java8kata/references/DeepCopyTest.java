@@ -7,6 +7,9 @@ import com.jacky.onjava8.references.DepthReading;
 import com.jacky.onjava8.references.OceanReading;
 import com.jacky.onjava8.references.TemperatureReading;
 import org.junit.jupiter.api.*;
+import org.junit.platform.commons.util.StringUtils;
+import sun.lwawt.macosx.CSystemTray;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeepCopyTest {
@@ -23,8 +26,15 @@ public class DeepCopyTest {
     DepthReading dr = clone.getDepthReading();
     dr.setDepth(dr.getDepth() + 1);
     clone.setDepthReading(dr);
+    String skd = StringUtils.defaultToString(clone);
+
     assertEquals(reading.toString(),
-      "temperature: 33.9, depth: 100.5");
+            "temperature: 33.9, depth: 100.5");
+
+
+
+
+
     assertEquals(clone.toString(),
       "temperature: 34.9, depth: 101.5");
   }
