@@ -8,7 +8,6 @@ import com.jacky.onjava8.references.OceanReading;
 import com.jacky.onjava8.references.TemperatureReading;
 import org.junit.jupiter.api.*;
 import org.junit.platform.commons.util.StringUtils;
-import sun.lwawt.macosx.CSystemTray;
 
 import static org.junit.jupiter.api.Assertions.*;
 

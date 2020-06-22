@@ -5,7 +5,18 @@ import com.google.common.collect.Lists;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+/*
 
+https://leetcode-cn.com/tag/linked-list/
+
+精选 5 个常见的链表操作。
+单链表反转
+链表中环的检测
+两个有序的链表合并
+删除链表倒数第 n 个结点
+求链表的中间结点
+
+ */
 public class LinkNodeRelatedSolutions {
 
 
@@ -293,9 +304,53 @@ public class LinkNodeRelatedSolutions {
         return length;
     }
 
-    private ListNode skipToK(ListNode head) {
-        return null;
+
+    /**
+     *     作者：reals
+     *     链接：https://leetcode-cn.com/problems/reverse-nodes-in-k-group/solution/tu-jie-kge-yi-zu-fan-zhuan-lian-biao-by-user7208t/
+     *     来源：力扣（LeetCode）
+     *     著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroup2(ListNode head, int k) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode pre = dummy;
+        ListNode end = dummy;
+
+        while (end.next != null) {
+            for (int i = 0; i < k && end != null; i++) {
+                end = end.next;
+            }
+            if (end == null) {
+                break;
+            }
+            ListNode start = pre.next;
+            ListNode next = end.next;
+            end.next = null;
+            pre.next = reverse(start);
+            start.next = next;
+            pre = start;
+            end = pre;
+        }
+        return dummy.next;
     }
+
+    private ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
 
     public static class ListNode {
         public int val;

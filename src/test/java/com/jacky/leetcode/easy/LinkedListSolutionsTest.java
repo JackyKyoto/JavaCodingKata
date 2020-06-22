@@ -21,14 +21,8 @@ public class LinkedListSolutionsTest {
 
     @Test
     public void should_check_has_cycle() {
-        LinkNodeRelatedSolutions.ListNode node1 = new LinkNodeRelatedSolutions.ListNode(1);
-        LinkNodeRelatedSolutions.ListNode node2 = new LinkNodeRelatedSolutions.ListNode(2);
-        node1.next = node2;
-        LinkNodeRelatedSolutions.ListNode node3 = new LinkNodeRelatedSolutions.ListNode(3);
-        node2.next = node3;
-        LinkNodeRelatedSolutions.ListNode node4 = new LinkNodeRelatedSolutions.ListNode(4);
-        node3.next = node4;
-        node4.next = node2;
+        LinkNodeRelatedSolutions.ListNode node1 = getListNodes(Lists.newArrayList(1, 2, 3, 4));
+        node1.next.next.next = node1.next;
         LinkNodeRelatedSolutions solution = new LinkNodeRelatedSolutions();
         assertEquals(true, solution.hasCycle(node1));
     }
@@ -58,9 +52,9 @@ public class LinkedListSolutionsTest {
 
     @Test
     public void shouldReverseKGroup() {
-        LinkNodeRelatedSolutions.ListNode node1 = getListNodes(Lists.newArrayList(1, 2,3,4));
+        LinkNodeRelatedSolutions.ListNode node1 = getListNodes(Lists.newArrayList(1, 2,3,4,5,6,7));
         LinkNodeRelatedSolutions solution = new LinkNodeRelatedSolutions();
-        LinkNodeRelatedSolutions.ListNode afterReversed = solution.reverseKGroup(node1,2);
+        LinkNodeRelatedSolutions.ListNode afterReversed = solution.reverseKGroup2(node1,3);
         String afterReverse = showNodeInfoListsFromHeadToTail(afterReversed);
         assertEquals("2->1->4->3->NULL", afterReverse);
     }
