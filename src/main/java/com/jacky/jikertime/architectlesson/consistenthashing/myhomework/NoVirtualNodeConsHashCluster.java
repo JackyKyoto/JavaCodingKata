@@ -3,7 +3,10 @@ package com.jacky.jikertime.architectlesson.consistenthashing.myhomework;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public class NoVirtualConsistantHashCacheServerCluster extends AbstractCacheServerCluster {
+/**
+ * 无虚拟节点的集群
+ */
+public class NoVirtualNodeConsHashCluster extends AbstractCacheServerCluster {
   //key表示服务器的hash值，value表示服务器
   private static SortedMap<Integer, CacheNode> sortedMap = new TreeMap<Integer, CacheNode>();
   @Override
@@ -29,5 +32,10 @@ public class NoVirtualConsistantHashCacheServerCluster extends AbstractCacheServ
   public void addNewCacheNode(CacheNode cacheNode) {
     super.addNewCacheNode(cacheNode);
     sortedMap.put(getHashCode(cacheNode.getNodeName()),cacheNode);
+  }
+
+  @Override
+  public String getAlgoType() {
+    return "无虚拟节点的一致性hash算法:";
   }
 }

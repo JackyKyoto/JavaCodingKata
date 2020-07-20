@@ -15,28 +15,31 @@ public abstract class AbstractCacheServerCluster {
     cacheNodes.add(cacheNode);
   }
 
+  abstract public String getAlgoType();
+
   abstract public CacheNode routeToCacheNodeByKey(String key);
 
   public int getHashCode(String key) {
-    //return key.hashCode() & Integer.MAX_VALUE;
-    final int p = 16777619;
-    int hash = (int)2166136261L;
-    for (int i = 0; i < key.length(); i++) {
-      hash = (hash ^ key.charAt(i)) * p;
-    }
-    hash += hash << 13;
-    hash ^= hash >> 7;
-    hash += hash << 3;
-    hash ^= hash >> 17;
-    hash += hash << 5;
-
-    // 如果算出来的值为负数则取其绝对值
-    if (hash < 0) {
-      hash = Math.abs(hash);
-    }
-    return hash;
+    return  HashUtil.hash(key);
+    //使用FNV1_32_HASH算法计算Hash值
+//    final int p = 16777619;
+//    int hash = (int)2166136261L;
+//    for (int i = 0; i < key.length(); i++) {
+//      hash = (hash ^ key.charAt(i)) * p;
+//    }
+//    hash += hash << 13;
+//    hash ^= hash >> 7;
+//    hash += hash << 3;
+//    hash ^= hash >> 17;
+//    hash += hash << 5;
+//
+//    // 如果算出来的值为负数则取其绝对值
+//    if (hash < 0) {
+//      hash = Math.abs(hash);
+//    }
+//    return hash;
   }
-  //均值
+  //计算均值
   public double getAverage() {
     int sum = 0;
     for (int i = 0; i < cacheNodes.size(); i++) {
@@ -45,7 +48,7 @@ public abstract class AbstractCacheServerCluster {
     return (double) (sum / cacheNodes.size());
   }
 
-  //标准差
+  //计算标准差
   public double getStandardDevition() {
     double sum = 0;
     for (int i = 0; i < cacheNodes.size(); i++) {
@@ -53,6 +56,14 @@ public abstract class AbstractCacheServerCluster {
     }
     return (sum / (cacheNodes.size() - 1));
   }
+
+//  public double calcStd() {
+//    Integer[] dataSizes = cacheNodes.stream().collect(Collectors.a)
+//    double avg = Arrays.stream(dataSizes).mapToInt(Integer::intValue).average().orElse(0d);
+//    double avgStd = Arrays.stream(visitData).map(count -> Math.pow(count - avg, 2)).mapToDouble(Double::doubleValue).average().orElse(0d);
+//    double std = Math.sqrt(avgStd);
+//    return std;
+//  }
 
   public void showNodesInfo() {
     for (CacheNode cacheNode : cacheNodes) {

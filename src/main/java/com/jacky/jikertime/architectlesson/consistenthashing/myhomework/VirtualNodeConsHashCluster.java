@@ -5,6 +5,9 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.UUID;
 
+/**
+ * 带虚拟节点的集群
+ */
 public class VirtualNodeConsHashCluster extends AbstractCacheServerCluster {
   //key表示服务器的hash值，value表示服务器
   private static SortedMap<Integer, VirtualCacheNode> sortedMap = new TreeMap<Integer, VirtualCacheNode>();
@@ -27,7 +30,10 @@ public class VirtualNodeConsHashCluster extends AbstractCacheServerCluster {
       return subMap.get(i).getActualCacheNode();
     }
   }
-
+  @Override
+  public String getAlgoType() {
+    return "带虚拟节点的一致性hash算法:";
+  }
   @Override
   public void addNewCacheNode(CacheNode cacheNode) {
     super.addNewCacheNode(cacheNode);

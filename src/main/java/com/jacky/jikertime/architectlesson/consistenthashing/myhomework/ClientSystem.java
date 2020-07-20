@@ -6,20 +6,27 @@ public class ClientSystem {
 
 
   public static void main(String[] args) {
-    CachService cachService = getCachService(new SimpleModHashCacheServerCluster());
+    System.out.println("----------------分割线----------------");
+    CachService cachService = getCachService(new SimpleModHashCluster());
     add1millionKV(cachService);
     cachService.showNodesInfo();
     cachService.printStandardDevition();
 
-    CachService cachService2 = getCachService(new NoVirtualConsistantHashCacheServerCluster());
+    System.out.println("----------------分割线----------------");
+
+    CachService cachService2 = getCachService(new NoVirtualNodeConsHashCluster());
     add1millionKV(cachService2);
     cachService2.showNodesInfo();
     cachService2.printStandardDevition();
+
+    System.out.println("----------------分割线----------------");
 
     CachService cachService3 = getCachService(new VirtualNodeConsHashCluster());
     add1millionKV(cachService3);
     cachService3.showNodesInfo();
     cachService3.printStandardDevition();
+
+    System.out.println("----------------分割线----------------");
   }
 
   private static CachService getCachService(AbstractCacheServerCluster simpleModHashCacheServerCluster) {
@@ -35,11 +42,11 @@ public class ClientSystem {
     }
   }
 
-  private static void mockUpTenNodes(AbstractCacheServerCluster abstractCacheServerCluster ) {
+  private static void mockUpTenNodes(AbstractCacheServerCluster abstractCacheServerCluster) {
     for (int i = 0; i < 10; i++) {
       CacheNode cacheNode = new CacheNode();
-      cacheNode.setNodeIpAddr("192.168.0."+i);
-      cacheNode.setNodeName("Node_"+UUID.randomUUID());
+      cacheNode.setNodeIpAddr("192.168.0." + i);
+      cacheNode.setNodeName("Node_" + i);
       abstractCacheServerCluster.addNewCacheNode(cacheNode);
     }
   }

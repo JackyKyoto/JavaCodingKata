@@ -7,7 +7,6 @@ public class CacheNode {
   private Map<String,Object> kvMap = new HashMap();
   private String nodeName;
   private String nodeIpAddr;
-
   public String getNodeName() {
     return nodeName;
   }

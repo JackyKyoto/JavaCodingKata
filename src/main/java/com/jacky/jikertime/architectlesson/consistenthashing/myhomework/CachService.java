@@ -12,7 +12,13 @@ public class CachService {
     cacheNode.putValue(key,value);
   }
 
+  public Object getValueFromCache(String key){
+    CacheNode cacheNode = cacheServerCluster.routeToCacheNodeByKey(key);
+    return cacheNode.getValue(key);
+  }
+
   public void showNodesInfo() {
+    System.out.println(cacheServerCluster.getAlgoType());
     cacheServerCluster.showNodesInfo();
   }
   public void printStandardDevition(){

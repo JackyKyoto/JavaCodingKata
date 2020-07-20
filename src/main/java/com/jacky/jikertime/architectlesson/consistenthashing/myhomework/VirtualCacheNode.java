@@ -2,7 +2,7 @@ package com.jacky.jikertime.architectlesson.consistenthashing.myhomework;
 
 
 /**
- * @author jacky
+ * 虚拟节点
  */
 public class VirtualCacheNode {
   private CacheNode actualCacheNode;
@@ -17,15 +17,9 @@ public class VirtualCacheNode {
     return actualCacheNode;
   }
 
-  public void setActualCacheNode(CacheNode actualCacheNode) {
-    this.actualCacheNode = actualCacheNode;
-  }
-
   public String getVirtualCacheNodeName() {
     return virtualCacheNodeName;
   }
 
-  public void setVirtualCacheNodeName(String virtualCacheNodeName) {
-    this.virtualCacheNodeName = virtualCacheNodeName;
-  }
+
 }
