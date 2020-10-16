@@ -22,6 +22,9 @@ public class BenchMarkUtil {
     for (int i = 0; i < reqs; i++) {
       callableList.add(new ABTask(testUrl));
     }
+    executor.execute(()->{
+
+    });
     List<Future<Long>> futureList = executor.invokeAll(callableList);
     List<Long> executeTimeList = Lists.newArrayList();
     Long totalTime = 0L;
